@@ -13,13 +13,20 @@
       <ul>
         <li><%= link_to "Tumblr", root_path %></li>
         <li><%= link_to "Posts", root_path %></li>
-        <li>About</li>
+        <li><%= link_to "About", about_path %></li>
       </ul>
       <p>User Login</p>
     </div>
     <div>
       <div>
-        <p>Post Feed</p>
+        <% if current_page?(root_path) %>
+          <p>Post Feed</p>
+        <% elsif current_page?(about_path) %>
+          <p>My Site</p>
+        <% else %>
+          <%= link_to "Back to Post Feed", root_path %>
+        <% end %>
+
         <div>
           <button><%= link_to "Make Post", new_post_path %></button>
           <button>Log Out</button>
